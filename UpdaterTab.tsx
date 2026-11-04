@@ -10,7 +10,7 @@ import { Divider } from "@components/Divider";
 import { ErrorCard } from "@components/ErrorCard";
 import { Flex } from "@components/Flex";
 import { FormSwitch } from "@components/FormSwitch";
-import { Heading, HeadingSecondary } from "@components/Heading";
+import { Heading } from "@components/Heading";
 import { Link } from "@components/Link";
 import { Paragraph } from "@components/Paragraph";
 import { SettingsTab, wrapTab } from "@components/settings/tabs/BaseTab";
@@ -87,9 +87,9 @@ function RepoCard({ repo, busy, onUpdate }: { repo: RepoInfo; busy: boolean; onU
     <Card variant={repo.error ? "warning" : isOutdated ? "info" : "normal"} className={cl("repo")}>
       <Flex justifyContent="space-between" alignItems="center" flexWrap="wrap" gap="0.5em">
         <div>
-          <HeadingSecondary className={cl("repo-name")}>
+          <Heading tag="h3" className={cl("repo-name")}>
             {repo.remoteUrl ? <Link href={repo.remoteUrl}>{repo.name}</Link> : repo.name}
-          </HeadingSecondary>
+          </Heading>
           <Paragraph className={cl("repo-meta")}>
             {repo.branch ?? "unknown branch"}
             {repo.upstream && ` → ${repo.upstream}`}
@@ -267,7 +267,7 @@ function UserpluginUpdater() {
   return (
     <SettingsTab>
       <Card variant="info" className={Margins.bottom20}>
-        <HeadingSecondary>How this works</HeadingSecondary>
+        <Heading tag="h3">How this works</Heading>
         <Paragraph>
           Every git repository under <code>src/userplugins</code> is pulled, then Vencord is rebuilt with{" "}
           <code>node scripts/build/build.mjs</code>. A restart is needed afterwards for the new code to load.{" "}
@@ -277,7 +277,7 @@ function UserpluginUpdater() {
 
       {pendingRebuild && (
         <Card variant="warning" className={Margins.bottom16}>
-          <HeadingSecondary>Rebuild pending</HeadingSecondary>
+          <Heading tag="h3">Rebuild pending</Heading>
           <Paragraph>
             Repositories have been pulled but Vencord has not been rebuilt since. The updated plugin code will not load
             until it is.
